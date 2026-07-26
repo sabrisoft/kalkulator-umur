@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Umur</title>
+  <style>
+    /* Rekabentuk ringkas untuk mencantikkan paparan */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+    }
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    input, button {
+      padding: 8px;
+      margin-top: 10px;
+    }
+    button {
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Kira Umur Anda</h2>
+    
+    <label for="tahunLahir">Masukkan Tahun Lahir:</label><br>
+    <input type="number" id="tahunLahir" placeholder="Contoh: 2000">
+    <button onclick="kiraUmur()">Kira</button>
+
+    <h3 id="keputusan"></h3>
+  </div>
+
+  <script>
+    function kiraUmur() {
+      // 1. Ambil nilai dari petak input
+      var inputTahun = document.getElementById("tahunLahir").value;
+      var elemenKeputusan = document.getElementById("keputusan");
+
+      // 2. Semak jika input kosong atau negatif
+      if (!inputTahun || inputTahun <= 0) {
+        elemenKeputusan.className = "error";
+        elemenKeputusan.innerText = "Sila masukkan tahun lahir yang sah!";
+        return;
+      }
+
+      // 3. Ambil tahun semasa secara automatik dari sistem
+      var tahunSemasa = new Date().getFullYear();
+
+      // 4. Semak jika tahun lahir melebihi tahun semasa
+      if (inputTahun > tahunSemasa) {
+        elemenKeputusan.className = "error";
+        elemenKeputusan.innerText = "Tahun lahir tidak boleh melebihi tahun semasa (" + tahunSemasa + ")!";
+        return;
+      }
+
+      // 5. Kira umur
+      var umur = tahunSemasa - inputTahun;
+
+      // 6. Paparkan keputusan
+      elemenKeputusan.className = "";
+      elemenKeputusan.innerText = "Umur anda pada tahun " + tahunSemasa + " ialah: " + umur + " tahun";
+    }
+  </script>
+
+</body>
+</html>
