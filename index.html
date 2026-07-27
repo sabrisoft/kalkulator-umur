@@ -46,7 +46,13 @@
       var elemenKeputusan = document.getElementById("keputusan");
 
       // 2. Semak jika input kosong atau negatif
-      if (!inputTahun || inputTahun <= 0) {
+      if (!inputTahun) {
+        elemenKeputusan.className = "error";
+        elemenKeputusan.innerText = "Sila masukkan tahun lahir!";
+        return;
+      }
+
+      if (inputTahun <= 0) {
         elemenKeputusan.className = "error";
         elemenKeputusan.innerText = "Sila masukkan tahun lahir yang sah!";
         return;
